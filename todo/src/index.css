@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.slider-container .slick-slide {
+  padding: 10px;
+  display: flex !important;
+  justify-content: center;
+}
+
+.slider-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
