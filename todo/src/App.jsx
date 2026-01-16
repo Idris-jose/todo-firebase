@@ -1,95 +1,152 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [step, setStep] = useState(1);
-
-  const nextStep = () => setStep(prev => prev + 1);
-
-  const steps = [
-    {
-      title: "Let's get you set up",
-      label: "Email",
-      type: "email",
-      name: "email",
-      placeholder: "Enter your email"
-    },
-    {
-      title: "Create a password",
-      label: "Password",
-      type: "password",
-      name: "password",
-      placeholder: "Create a password (min. 6 characters)"
-    },
-    {
-      title: "Personal Information",
-      label: "Full Name",
-      type: "text",
-      name: "name",
-      placeholder: "Enter your full name"
-    }
-  ];
-
-  const currentStep = steps[step - 1];
+  const nextStep = () => setStep(s => s + 1);
 
   return (
-    <div className="flex flex-col gap-3 bg-green-100 items-center justify-center h-screen">
+   <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0e0f12]">
+  {/* light blobs */}
+  <div className="absolute inset-0">
+    <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px]" />
+    <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px]" />
+  </div>
+
+<div className="relative z-10 w-[420px] rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 p-8 text-white">
       <AnimatePresence mode="wait">
-  {step <= 3 ? (
-    <motion.div
-      key={step}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
-    >
-      <h1 className="text-gray-700">{currentStep.title}</h1>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          nextStep();
-        }}
-        className="space-y-4 w-80"
-      >
-        <div>
-          <label
-            htmlFor={currentStep.name}
-            className="block text-sm font-medium text-gray-700 mb-1"
+        {step === 1 && (
+          <motion.div
+            key="step-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
           >
-            {currentStep.label}
-          </label>
-          <input
-            type={currentStep.type}
-            id={currentStep.name}
-            name={currentStep.name}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-            placeholder={currentStep.placeholder}
-            required
-          />
-        </div>
+            <h1 className="text-white font-light text-4xl">Yoooo,Get started</h1>
+            <button
+              onClick={nextStep}
+              className="mt-6 w-full text-lg bg-white text-black rounded-md px-4 py-3"
+            >
+              Let's go!
+            </button>
+          </motion.div>
+        )}
+  
+        {step === 2 && (
+          <motion.div
+            key="step-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col gap-3 justify-center items-center"
+          >
+            <h1 className="text-white text-3xl">What's your email?</h1>
 
-        <button
-          type="submit"
-          className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-md px-4 py-3 transition duration-300"
-        >
-          Next
-        </button>
-      </form>
-    </motion.div>
-  ) : (
-    <motion.div
-      key="success"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      <h1 className="text-gray-700">Account Created!</h1>
-      <p className="text-gray-600">
-        Your account has been successfully created.
-      </p>
-    </motion.div>
-  )}
-</AnimatePresence>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                nextStep();
+              }}
+              className="space-y-4 w-80"
+            >
+              <input
+                type="email"
+                className="w-full p-3 border border-white/5 rounded-md"
+                placeholder="Enter your email"
+                required
+              />
+
+              <button className="w-full text-lg bg-white text-black rounded-md px-4 py-3">
+                Next
+              </button>
+            </form>
+          </motion.div>
+        )}
+
+        {step === 3 && (
+          <motion.div
+            key="step-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col gap-3 justify-center items-center"
+          >
+            <h1 className="text-white text-3xl">Create a password</h1>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                nextStep();
+              }}
+              className="space-y-4 w-80"
+            >
+            
+              <input
+                type="password"
+                className="w-full p-3 border border-white/5 rounded-md"
+                placeholder="Create a password"
+                required
+              />
+
+              <button className="w-full text-lg bg-white text-black rounded-md px-4 py-3">
+                Next
+              </button>
+            </form>
+          </motion.div>
+        )}
+
+        {step === 4 && (
+          <motion.div
+            key="step-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex flex-col gap-3 justify-center items-center"
+          >
+            <h1 className="text-white text-3xl">What's your name?</h1>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                nextStep();
+              }}
+              className="space-y-4 w-80"
+            >
+            
+              <input
+                type="text"
+                className="w-full p-3 border border-white/5 rounded-md"
+                placeholder="Enter your name"
+                required
+              />
+
+              <button className="w-full text-lg bg-white text-black rounded-md px-4 py-3">
+                Finish things up!
+              </button>
+            </form>
+          </motion.div>
+        )}
+
+        {step > 4 && (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <h1 className="text-white">Account Created!</h1>
+            <p className="text-gray-300">
+              Your account has been successfully created.
+            </p>
+          </motion.div>
+        )}
+
+      </AnimatePresence>
+      </div>
     </div>
   );
 }
