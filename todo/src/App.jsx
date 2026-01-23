@@ -132,18 +132,6 @@ export default function App() {
           </motion.div>
         )}
 
-        {step > 4 && (
-          <motion.div
-            key="success"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <h1 className="text-white">Account Created!</h1>
-            <p className="text-gray-300">
-              Your account has been successfully created.
-            </p>
-          </motion.div>
-        )}
 
       </AnimatePresence>
       </div>
