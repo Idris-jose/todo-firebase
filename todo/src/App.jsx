@@ -59,9 +59,7 @@ export default function App() {
                 required
               />
 
-              <button className="w-full text-lg bg-white text-black rounded-md px-4 py-3">
-                Next
-              </button>
+            
             </form>
           </motion.div>
         )}
